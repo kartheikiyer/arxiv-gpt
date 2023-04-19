@@ -1,6 +1,4 @@
 matplotlib
-pickle
 bokeh
 cloudpickle
 scipy
-urllib
