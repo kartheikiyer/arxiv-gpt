@@ -11,7 +11,8 @@ from scipy import stats
 from urllib.request import urlopen
 
 st.title("ArXiv+GPT3 embedding explorer")
-st.markdown("This is an explorer for astro-ph.GA papers on the arXiv (up to Apt 18th, 2023). The papers have been preprocessed with `chaotic_neural` [(link)](http://chaotic-neural.readthedocs.io/) after which the collected abstracts are run through `text-embedding-ada-002` with [langchain](https://python.langchain.com/en/latest/ecosystem/openai.html) to generate a unique vector correpsonding to each paper. These are then compressed using umap and shown here, and can be used for similarity searches with methods like [faiss](https://github.com/facebookresearch/faiss). The scatterplot here can be paired with a heatmap for more targeted searches looking at a specific topic or area (see sidebar). Upgrade to chaotic neural suggested by Jo Ciuca, thank you! More to come (hopefully) with GPT-4 and its applications!")
+st.markdown("This is an explorer for astro-ph.GA papers on the arXiv (up to Apt 18th, 2023). The papers have been preprocessed with `chaotic_neural` [(link)](http://chaotic-neural.readthedocs.io/) after which the collected abstracts are run through `text-embedding-ada-002` with [langchain](https://python.langchain.com/en/latest/ecosystem/openai.html) to generate a unique vector correpsonding to each paper. These are then compressed using [umap](https://umap-learn.readthedocs.io/en/latest/) and shown here, and can be used for similarity searches with methods like [faiss](https://github.com/facebookresearch/faiss). The scatterplot here can be paired with a heatmap for more targeted searches looking at a specific topic or area (see sidebar). Upgrade to chaotic neural suggested by Jo Ciucă, thank you! More to come (hopefully) with GPT-4 and its applications!")
+st.markdown("Interpreting the UMAP plot: the algorithm creates a 2d embedding from the high-dim vector space that tries to conserve as much similarity information as possible. Nearby points in UMAP space are similar, and grow dissimiliar as you move farther away. The axes do not have any physical meaning.")
 
 @st.cache_data
 def get_embedding_data(url):
@@ -31,6 +32,7 @@ def density_estimation(m1, m2, xmin=0, ymin=0, xmax=15, ymax=15):
     return X, Y, Z
         
 st.sidebar.markdown('This is a widget that allows you to look for papers containing specific phrases in the dataset and show it as a heatmap. Enter the phrase of interest, then change the size and opacity of the heatmap as desired to find the high-density regions. Hover over blue points to see the details of individual papers.')
+st.sidebar.markdown('`Note`: (i) if you enter a query that is not in the corpus of abstracts, it will return an error. just enter a different query in that case. (ii) there are some empty tooltips when you hover, these correspond to the underlying hexbins, and can be ignored.')
     
 st.sidebar.text_input("Search query", key="phrase", value="")
 alpha_value = st.sidebar.slider("Pick the hexbin opacity",0.0,1.0,0.1)
