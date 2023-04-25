@@ -1,5 +1,4 @@
 import datetime, os
-import chaotic_neural as cn
 from tqdm import tqdm
 from langchain.llms import OpenAI
 from langchain.embeddings import OpenAIEmbeddings
@@ -11,6 +10,7 @@ import urllib
 import cloudpickle as cp
 from urllib.request import urlopen
 from summa import summarizer
+import numpy as np
 
 # openai.organization = "org-EBvNTjd2pLrK4vOhFlNMLr2v"
 openai.organization = st.secrets.openai.org
@@ -119,7 +119,7 @@ def list_similar_papers_v2(model_data,
             return
         else:
             print('Title: '+arxiv_query_feed.entries[0].title)
-            inferred_vector = cn.np.array(embeddings.embed_query(arxiv_query_feed.entries[0].summary))
+            inferred_vector = np.array(embeddings.embed_query(arxiv_query_feed.entries[0].summary))
 #         arxiv_query_tokens = gensim.utils.simple_preprocess(arxiv_query_feed.entries[0].summary)
 #         inferred_vector = model.infer_vector(arxiv_query_tokens)
 
@@ -133,7 +133,7 @@ def list_similar_papers_v2(model_data,
 #                word_vector = word_vector + model.wv[doc_id[i]]
 # #         word_vector = model.infer_vector(doc_id)
 #         inferred_vector = word_vector
-        inferred_vector = cn.np.array(embeddings.embed_query(doc_id))
+        inferred_vector = np.array(embeddings.embed_query(doc_id))
         start_range = 0
     else:
         print('unrecognized input type.')
