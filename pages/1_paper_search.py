@@ -1,5 +1,4 @@
 import datetime, os
-from tqdm import tqdm
 from langchain.llms import OpenAI
 from langchain.embeddings import OpenAIEmbeddings
 import openai
@@ -34,7 +33,7 @@ ctr = -1
 num_chunks = len(gal_feeds)
 all_text, all_titles, all_arxivid, all_links, all_authors = [], [], [], [], []
 
-for nc in tqdm(range(num_chunks)):
+for nc in range(num_chunks):
 
     for i in range(len(gal_feeds[nc].entries)):
         text = gal_feeds[nc].entries[i].summary
