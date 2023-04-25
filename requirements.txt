@@ -7,3 +7,4 @@ faiss-cpu
 langchain
 openai
 feedparser
+tiktoken
