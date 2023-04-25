@@ -6,3 +6,4 @@ summa
 faiss-cpu
 langchain
 openai
+feedparser
