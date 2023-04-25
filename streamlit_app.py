@@ -15,7 +15,7 @@ st.markdown(
     arXiv+GPT is a framework for searching and visualizing papers on
     the [arXiv](https://arxiv.org/) using the context sensitivity from modern
     large language models (LLMs) like GPT3 to better link paper contexts
-    
+
     **👈 Select a tool from the sidebar** to see some examples
     of what this framework can do!
     ### Want to learn more?
