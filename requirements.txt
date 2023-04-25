@@ -2,3 +2,4 @@ matplotlib
 bokeh==2.4.3
 cloudpickle
 scipy
+summa
